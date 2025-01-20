@@ -1,0 +1,302 @@
+/* General body styling */
+.app {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(90deg, #1a1a2e, #16213e, #0f3460);
+  height: 100vh; /* Full viewport height */
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+/* Game container */
+.game-container {
+  background: rgba(25, 25, 25, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  width: 50%; /* Use 90% of viewport width */
+  height: 90vh; /* Use 90% of viewport height */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Adjust space between elements */
+}
+
+/* Title */
+.title {
+  font-size: 2.5em;
+  color: #00d4ff;
+  margin-bottom: 10px;
+}
+
+/* Instructions */
+.instructions {
+  font-size: 1.2em;
+  color: #cccccc;
+  margin-bottom: 20px;
+}
+
+/* Dropdown settings */
+.settings label {
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.settings select {
+  background: #2c2c54;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 10px;
+  font-size: 1em;
+  border: 1px solid #444;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  gap: 10px; /* Space between cards */
+  width: 100%; /* Use full container width */
+  height: 70%; /* Adjust grid height dynamically */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+  /* grid-template-columns: repeat(4, 1fr); */
+  justify-content: center; /* Center horizontally */
+  align-content: center; /* Center vertically */
+}
+
+/* Box styles */
+.box-wrapper {
+  perspective: 1000px;
+}
+
+.box {
+  width: 100%; 
+  padding-bottom: 100%; 
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease-in-out;
+}
+
+.box.flipped {
+  transform: rotateY(180deg);
+}
+
+.box.correct .back {
+  background: #28a745;
+  color: #fff;
+}
+
+.box.wrong .back {
+  background: #e63946;
+  color: #fff;
+}
+
+/* Front and back styles */
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 5.5rem;
+}
+
+.front {
+  background: #16213e;
+}
+
+.back {
+  background: #e63946;
+  transform: rotateY(180deg);
+}
+
+/* SVG Styling */
+.svg-icon {
+  width: 50%; /* Dynamically adjust the size of the SVG icon */
+  height: 50%; /* Ensure it fits proportionally */
+  stroke: #fff;
+}
+
+/* Reset Button */
+.reset-button {
+  background: #00aaff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.reset-button:hover {
+  background: #007acc;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dimmed background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the modal is above all other elements */
+}
+
+.modal-content {
+  background: #1a1a2e;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  max-width: 400px;
+  width: 80%; /* Responsive width */
+  animation: fadeIn 0.3s ease-in-out; /* Add a fade-in effect */
+}
+
+.modal-title {
+  font-size: 2em;
+  color: #00d4ff;
+  margin-bottom: 10px;
+}
+
+.modal-text {
+  font-size: 1.2em;
+  color: #cccccc;
+  margin-bottom: 20px;
+}
+
+.modal .reset-button {
+  width: auto;
+  margin: 10px auto;
+  display: block;
+}
+
+/* Modal Fade-In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Mobile Responsive Additions */
+
+/* Adjust container for smaller screens */
+@media (max-width: 768px) {
+  .game-container {
+    width: 90%; /* Take most of the screen width */
+    height: 85vh; /* Reduce height slightly */
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 2em; /* Slightly smaller font size */
+  }
+
+  .instructions {
+    font-size: 1em; /* Smaller font size for instructions */
+  }
+
+  .reset-button {
+    padding: 8px 15px; /* Smaller button padding */
+    font-size: 0.9em; /* Reduce font size */
+  }
+
+  .modal-content {
+    padding: 20px;
+    font-size: 0.9em; /* Smaller text size for modal */
+  }
+
+  .modal-title {
+    font-size: 1.8em; /* Reduce modal title size */
+  }
+
+  .modal-text {
+    font-size: 1em; /* Adjust modal text size */
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* Reduce to 2 columns on medium screens */
+  }
+}
+
+/* Adjust for very small screens (mobile phones) */
+@media (max-width: 480px) {
+  .game-container {
+    height: 80vh; /* Further reduce height */
+    padding: 10px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* Maintain 2 columns for compact screens */
+    gap: 5px; /* Reduce gap between cards */
+  }
+
+  .box {
+    font-size: 4rem; /* Adjust font size for box */
+  }
+
+  .title {
+    font-size: 1.8em; /* Smaller title */
+  }
+
+  .instructions {
+    font-size: 0.9em; /* Compact instructions */
+  }
+
+  .reset-button {
+    padding: 6px 12px; /* Compact button size */
+    font-size: 0.8em; /* Smaller font size */
+  }
+
+  .modal-content {
+    width: 95%; /* Ensure modal fits smaller screens */
+    font-size: 0.8em; /* Compact modal text */
+  }
+
+  .svg-icon {
+    width: 40%; /* Adjust icon size */
+    height: 40%;
+  }
+}
+
+/* Ensure touch-friendly buttons */
+button, .reset-button {
+  touch-action: manipulation; /* Improve touch response */
+  font-size: inherit; /* Inherit font size for better scaling */
+}
+
+/* Adjust grid for medium screens */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Smaller cards for medium screens */
+    gap: 8px; /* Reduce gap slightly */
+  }
+}
+
+/* Adjust grid for small screens */
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* More compact cards for small screens */
+    gap: 5px; /* Minimize gap for better spacing */
+  }
+}
